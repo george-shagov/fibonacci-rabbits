@@ -164,7 +164,7 @@ Forks like magic.
 #### Terminology
 
 ```
-0 - Juior Pair of Rabbits
+0 - Junior Pair of Rabbits
 1 - Mature Pair of Rabbits
 2 - Deceased Pair of Rabbits
 ```
@@ -274,7 +274,7 @@ $ find ./r-seq/ -type f -name "r-seq.*"         \
 
 Looks fairly good.
 
-Checking phi:
+#### Checking phi:
 
 ```sh
 ./phi.sh | awk '{print $2 "-1.618033988749895"}' | bc -l 
@@ -300,6 +300,10 @@ looks good too.
 
 * 1.0
     * Work in progress
+
+## TODO
+
+* I have found an algo and better implementation for uniqueness (non-repetitiveness) check of a Fractal. It is to be proved that N level could be produced by only N-1 one, it could not be generated from scratch.
 
 ## Meta
 
