@@ -1,0 +1,16 @@
+CC=g++
+CFLAGS=-I. -Wall -std=c++17
+DEPS =
+OBJ = $(MAINFILE).o ctx.o processor.o generators.o
+
+%.o: %.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(MAINFILE): $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+clean:
+	rm -f *.o $(MAINFILE)
+
+install:
+	cp $(MAINFILE) $(HOME)/bin
