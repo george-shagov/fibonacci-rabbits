@@ -303,7 +303,7 @@ looks good too.
 
 ## TODO
 
-* I have found an algo and better implementation for uniqueness (non-repetitiveness) check of a Fractal. It is to be proved that N level could be produced by only N-1 one, it could not be generated from scratch.
+* I have NOT found an algo (and better implementation) for uniqueness (non-repetitiveness) check of a Fractal. It is to be proved that N level could be produced by only N-1 one, it could not be generated from scratch.
 
 ## Meta
 
