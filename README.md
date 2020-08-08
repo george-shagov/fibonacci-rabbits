@@ -33,8 +33,11 @@ Please find more info on [Fibonacci Rabbits](https://duckduckgo.com/?q=fibonacci
 
 #### Prerequisites and Terminology
 
-> **0 - Junior Pair of Rabbits**
-> **1 - Mature Pair of Rabbits**
+```
+0 - Junior Pair of Rabbits
+1 - Mature Pair of Rabbits
+```
+
 
 #### Algo
 
@@ -300,9 +303,9 @@ looks good too.
 
 ## Meta
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Distributed under the GPLv3 license. See ``gpl-3.0`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/george-shagov/fibonacci-rabbits](https://github.com/george-shagov/fibonacci-rabbits)
 
 <!-- Markdown link & img dfn's -->
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
