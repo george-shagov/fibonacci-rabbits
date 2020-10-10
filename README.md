@@ -19,10 +19,18 @@ Two state Fibonacci Rabbit's machine is well known and widely used at the moment
 
 Manual at the moment, tested only on Ubuntu
 
+### Configuration
+
 Linux:
 
 ```sh
-make clean && make
+cmake -S . -B build
+```
+
+### Build
+
+```sh
+cmake --build build
 ```
 
 ## Usage
@@ -64,7 +72,7 @@ $ ./rabbit-seq ./r-seq/r-seq.001
 
 And the output:
 ```sh
-$ ./rabbit-seq ./r-seq/r-seq.001 
+$ ./build/apps/rabbit-seq ./r-seq/r-seq.001 
 
 Growing ./r-seq/r-seq.001 to: ./r-seq/r-seq.002 ... Done.
 ```
