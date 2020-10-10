@@ -119,7 +119,7 @@ $ find ./r-seq/ -type f -name "r-seq.*"         \
 ```
 #### Phi Number
 
-or **Golden Number** or **Golden Ration**
+or **Golden Number** or **Golden Ratio**
 
 Please find more info on [Fibonacci Phi Number](https://duckduckgo.com/?q=fibonacci+phi)
 
@@ -312,6 +312,31 @@ looks good too.
 ## TODO
 
 * I have NOT found an algo (and better implementation) for uniqueness (non-repetitiveness) check of a Fractal. It is to be proved that N level could be produced by only N-1 one, it could not be generated from scratch.
+
+### Implemented:
+
+Single check
+
+```sh
+$ python ./fcheck.py -i ./r-seq/r-seq.006
+./r-seq/r-seq.006: The check succeeded.
+```
+
+In a row:
+```sh
+$ for i in `seq 10 20`; do python ./fcheck.py -i ./r-seq/r-seq.0$i; done
+./r-seq/r-seq.010: The check succeeded.
+./r-seq/r-seq.011: The check succeeded.
+./r-seq/r-seq.012: The check succeeded.
+./r-seq/r-seq.013: The check succeeded.
+./r-seq/r-seq.014: The check succeeded.
+./r-seq/r-seq.015: The check succeeded.
+./r-seq/r-seq.016: The check succeeded.
+./r-seq/r-seq.017: The check succeeded.
+./r-seq/r-seq.018: The check succeeded.
+./r-seq/r-seq.019: The check succeeded.
+./r-seq/r-seq.020: The check succeeded.
+```
 
 ## Meta
 
