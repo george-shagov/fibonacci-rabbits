@@ -32,7 +32,7 @@ namespace fibra
         //! @brief      generated rabbits
         //! @todo       1. make tuple, after Rabbit becomes a class
         //!             2. make variadic template
-        using rabbits_t = std::array<rabbits::Rabbit, 3>;
+        using rabbits_t = std::tuple<size_t, std::array<rabbits::Rabbit, 3>>;
 
         //! \namespace
         //! @brief          two state machine

@@ -85,7 +85,7 @@ namespace fibra
                         rabbits::Rabbit rabbit = rabbits::translate(ch);
                         gens::rabbits_t rabbits = generate(state, algo, rabbit);
 
-                        for (auto r : rabbits)
+                        for (auto r : std::get<1>(rabbits))
                             *out_it = static_cast<uint8_t>(r);
                     });
         }
