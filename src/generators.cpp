@@ -21,6 +21,3 @@
 using namespace std;
 using namespace fibra;
 using namespace fibra::gens;
-
-const st2::gen::arr st2::gen::s_states = { st2::State::JUNIOR, st2::State::MATURE };
-const st3::gen::arr st3::gen::s_states = { st3::State::JUNIOR, st3::State::MATURE, st3::State::DECEASED };

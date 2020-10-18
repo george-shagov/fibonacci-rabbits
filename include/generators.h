@@ -17,6 +17,9 @@
 
 #pragma once
 
+#include "rabbits.h"
+#include <tuple>
+
 /*! \namespace
  *! @brief      Fibonacci Rabbits
  */
@@ -26,149 +29,51 @@ namespace fibra
     //! @brief      Generators
     namespace gens
     {
+        //! @brief      generated rabbits
+        //! @todo       1. make tuple, after Rabbit becomes a class
+        //!             2. make variadic template
+        using rabbits_t = std::array<rabbits::Rabbit, 3>;
+
         //! \namespace
         //! @brief          two state machine
         namespace st2
         {
-            //! \enum
-            //! @brief          this should keep the values of
-            //!                 Fibonacci Rabbits
-            //! @details        Possible values: '0' '1'
-            //!                 where:
-            //!                     '0' - junior pair of rabbits
-            //!                     '1' - mature pair or rabbits
-            enum class State : uint8_t
-            {
-                    JUNIOR = '0'
-                ,   FIRST  = JUNIOR
-                ,   MATURE = '1'
-                ,   LAST   = MATURE
-            };
-
-            //! \enum
-            //! @brief          this should keep the indexes of
-            //!                 Fibonacci Rabbits
-            //! @details        Possible values: 0 1
-            //!                 where
-            //!                     0 - junior pair of rabbits
-            //!                     1 - mature pair or rabbits
-            enum class Index : std::size_t
-            {
-                    JUNIOR = 0
-                ,   FIRST  = JUNIOR
-                ,   MATURE = 1
-                ,   LAST   = MATURE
-            };
-
             //! \class
             //! @brief          generator class for two state
             //!                 Fibonacci Rabbit's machine
+            template <rabbits::Rabbit R>
             struct gen
             {
-                //! @brief      this is a return type of newly generated
-                //!             pairs of rabbits
-                using arr = std::array<State, 2>;
-
                 //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  in_char
-                //!             incoming pair of Rabbits
-                //! @param[in]  vals
-                //!             generated pairs of Rabbits
-                std::size_t operator() (const uint8_t in_char
-                                            , arr& vals) const;
-
-                //! @brief      static array to keep the values of
-                //!             Juniors and Mature Rabbits
-                static const arr s_states;
+                //! @param[in]  incoming pair of Rabbits
+                static rabbits_t generate();
             };
-        }
+        } // namespace st3
 
         //! \namespace
         //! @brief          three state machine
         namespace st3
         {
             //! \class
-            //! @bried          this should keep the values of
-            //!                 Fibonacci Rabbits
-            //! @details        Possible States:
-            //!                 '0' '1' '2'
-            //!                 where:
-            //!                     '0' - junior pair of rabbits
-            //!                     '1' - mature pair or rabbits
-            //!                     '2' - deceased pair or rabbits
-            enum class State : uint8_t
-            {
-                    JUNIOR = '0'
-                ,   FIRST  = JUNIOR
-                ,   MATURE = '1'
-                ,   DECEASED = '2'
-                ,   LAST   = DECEASED
-            };
-
-            //! \class
-            //! @brief          this should keep the indexes of
-            //!                 Fibonacci Rabbits
-            //! @details        Possible Values: 0 1
-            //!                 where
-            //!                     0 - junior pair of rabbits
-            //!                     1 - mature pair or rabbits
-            //!                     2 - deceased pair or rabbits
-            enum class Index : std::size_t
-            {
-                    JUNIOR = 0
-                ,   FIRST  = JUNIOR
-                ,   MATURE = 1
-                ,   DECEASED = 2
-                ,   LAST   = DECEASED
-            };
-
-            //! \class
-            //! @brief          Generator for three state machine
-            struct gen
-            {
-                //! @brief      this is a return type of newly generated
-                //!             pairs of rabbits
-                using arr = std::array<State, 3>;
-
-                //          //! \fn
-                //          //! @brief      A functor to generate new pairs or Rabbits
-                //          //! @param[in]  in_char
-                //          //!             incoming pair of Rabbits
-                //          //! @param[in]  vals
-                //          //!             generated pairs of Rabbits
-                //          virtual std::size_t operator() (const uint8_t in_char
-                //                                         , arr& vals) const = 0;
-
-                //! @brief      Static member to keep the state values
-                //!             for generator
-                static const arr s_states;
-            };
-            //! \class
             //! @brief          Generator for three state machine
             //!                 algorithm A
-            struct gen_a : gen
+            template <rabbits::Rabbit R>
+            struct gen_a
             {
                 //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  in_char
-                //!             incoming pair of Rabbits
-                //! @param[in]  vals
-                //!             generated pairs of Rabbits
-                std::size_t operator() (const uint8_t in_char
-                                       , arr& vals) const;
+                //! @param[in]  incoming pair of Rabbits
+                static rabbits_t generate();
             };
             //! \class
             //! @brief          Generator for three state machine
             //!                 algorithm B
-            struct gen_b : gen
+            template <rabbits::Rabbit R>
+            struct gen_b
             {
                 //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  in_char
-                //!             incoming pair of Rabbits
-                //! @param[in]  vals
-                //!             generated pairs of Rabbits
-                std::size_t operator() (const uint8_t in_char
-                                        , arr& vals) const;
+                //! @param[in]  incoming pair of Rabbits
+                static rabbits_t generate();
             };
-        }
+        } // namespace st3
     } // namespace gens
 } // namespace fibra

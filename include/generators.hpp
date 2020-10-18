@@ -28,80 +28,41 @@ namespace fibra
     {
         namespace st2
         {
-            std::size_t gen::operator() (const uint8_t in_char
-                                        , arr& vals) const
+            template <> rabbits_t gen<rabbits::Junior>::generate()
             {
-                switch (static_cast<State>(in_char))
-                {
-                    //! Mature's Breed
-                    case State::MATURE:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::MATURE)];
-                        vals[1] = s_states[static_cast<std::size_t>(Index::JUNIOR)];
-                        return 2;
-                    //! Junior's Breed
-                    case State::JUNIOR:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::MATURE)];
-                        return 1;
-                    default:
-                        /*! this practically means we do ignore
-                        *! all "non-valid" characters
-                        */
-                        return 0;
-                }
+                return {rabbits::Mature};
+            }
+            template <> rabbits_t gen<rabbits::Mature>::generate()
+            {
+                return {rabbits::Mature, rabbits::Junior};
             }
         }
         namespace st3
         {
-            std::size_t gen_a::operator() (const uint8_t in_char
-                                        , arr& vals) const
+            template <> rabbits_t gen_a<rabbits::Junior>::generate()
             {
-                switch (static_cast<State>(in_char))
-                {
-                    //! Mature's Breed
-                    case State::MATURE:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::DECEASED)];
-                        vals[1] = s_states[static_cast<std::size_t>(Index::MATURE)];
-                        vals[2] = s_states[static_cast<std::size_t>(Index::JUNIOR)];
-                        return 3;
-                    //! Junior's Breed
-                    case State::JUNIOR:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::MATURE)];
-                        return 1;
-                    //! Deceased's Breed
-                    case State::DECEASED:
-                        return 0;
-                    default:
-                        /*! this practically means we do ignore
-                        *! all "non-valid" characters
-                        */
-                        return 0;
-                }
+                return {rabbits::Mature};
             }
-            std::size_t gen_b::operator() (const uint8_t in_char
-                                        , arr& vals) const
+            template <> rabbits_t gen_a<rabbits::Mature>::generate()
             {
-                switch (static_cast<State>(in_char))
-                {
-                    //! Mature's Breed
-                    case State::MATURE:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::DECEASED)];
-                        vals[1] = s_states[static_cast<std::size_t>(Index::JUNIOR)];
-                        return 2;
-                    //! Junior's Breed
-                    case State::JUNIOR:
-                        vals[0] = s_states[static_cast<std::size_t>(Index::MATURE)];
-                        vals[1] = s_states[static_cast<std::size_t>(Index::JUNIOR)];
-                        return 2;
-                    //! Deceased's Breed
-                    case State::DECEASED:
-                        return 0;
-                    default:
-                        /*! this practically means we do ignore
-                        *! all "non-valid" characters
-                        */
-                        return 0;
-                }
+                return {rabbits::Deceased, rabbits::Mature, rabbits::Junior};
             }
-        }
-    }
+            template <> rabbits_t gen_a<rabbits::Deceased>::generate()
+            {
+                return {};
+            }
+            template <> rabbits_t gen_b<rabbits::Junior>::generate()
+            {
+                return {rabbits::Mature, rabbits::Junior};
+            }
+            template <> rabbits_t gen_b<rabbits::Mature>::generate()
+            {
+                return {rabbits::Deceased, rabbits::Junior};
+            }
+            template <> rabbits_t gen_b<rabbits::Deceased>::generate()
+            {
+                return {};
+            }
+        } // namespace st3
+    } // namespace gens
 } // namespace fibra
