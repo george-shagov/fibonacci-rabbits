@@ -27,6 +27,7 @@ namespace fibra
 {
     namespace processors
     {
+        //! @brief      Helper class to call upon corresponded generator for two state machine
         template <template <rabbits::Rabbit R> class G>
         gens::rabbits_t gen2(rabbits::Rabbit rabbit)
         {
@@ -37,6 +38,7 @@ namespace fibra
                 default: assert(0);
             }
         }
+        //! @brief      Helper class to call upon corresponded generator for three state machine
         template <template <rabbits::Rabbit R> class G>
         gens::rabbits_t gen3(rabbits::Rabbit rabbit)
         {
@@ -48,6 +50,15 @@ namespace fibra
                 default: assert(0);
             }
         }
+        //! \fn
+        //! brief   Helper Function to generate rabbits deneding of incoming parameters
+        //!
+        //! @param[in]      state
+        //!                 this is either two or three state machine
+        //! @param[in]      algo
+        //!                 either A or B
+        //! @param[in]      rabbit
+        //!                 a rabbit
         gens::rabbits_t generate(const rabbits::STATE state, const ALGO algo, const rabbits::Rabbit rabbit)
         {
             switch (state)
@@ -65,7 +76,7 @@ namespace fibra
                         case ALGO::A:
                             return gen3<gens::st3::a::gen>(rabbit);
                         case ALGO::B:
-                            return gen3<gens::st3::a::gen>(rabbit);
+                            return gen3<gens::st3::b::gen>(rabbit);
                         default: assert(0);
                     }
                 default:
@@ -89,8 +100,8 @@ namespace fibra
                         rabbits::Rabbit rabbit = rabbits::translate(ch);
                         gens::rabbits_t rabbits = generate(state, algo, rabbit);
 
-                        for (auto r : std::get<1>(rabbits))
-                            *out_it = static_cast<uint8_t>(r);
+                        for (auto i=0; i<rabbits.size(); ++i)
+                            *out_it = static_cast<uint8_t>(rabbits[i]);
                     });
         }
     } // namespace processors

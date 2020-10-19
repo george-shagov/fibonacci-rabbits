@@ -23,7 +23,6 @@
  */
 namespace fibra
 {
-    //! \namespace Generators
     namespace gens
     {
         namespace st2
@@ -32,11 +31,11 @@ namespace fibra
             {
                 template <> rabbits_t gen<rabbits::Junior>::generate()
                 {
-                    return std::make_tuple(1, std::array<rabbits::Rabbit,3>{rabbits::Mature});
+                    return Rabbits(std::make_tuple(1, rabbits_arr_t{rabbits::Mature}));
                 }
                 template <> rabbits_t gen<rabbits::Mature>::generate()
                 {
-                    return std::make_tuple(2, std::array<rabbits::Rabbit,3>{rabbits::Mature, rabbits::Junior});
+                    return Rabbits(std::make_tuple(2, rabbits_arr_t{rabbits::Mature, rabbits::Junior}));
                 }
             }
         }
@@ -46,30 +45,30 @@ namespace fibra
             {
                 template <> rabbits_t gen<rabbits::Junior>::generate()
                 {
-                    return std::make_tuple(1, std::array<rabbits::Rabbit,3>{rabbits::Mature});
+                    return Rabbits(std::make_tuple(1, rabbits_arr_t{rabbits::Mature}));
                 }
                 template <> rabbits_t gen<rabbits::Mature>::generate()
                 {
-                    return std::make_tuple(3, std::array<rabbits::Rabbit,3>{rabbits::Deceased, rabbits::Mature, rabbits::Junior});
+                    return Rabbits(std::make_tuple(3, rabbits_arr_t{rabbits::Deceased, rabbits::Mature, rabbits::Junior}));
                 }
                 template <> rabbits_t gen<rabbits::Deceased>::generate()
                 {
-                    return std::make_tuple(0, std::array<rabbits::Rabbit,3>{});
+                    return Rabbits(std::make_tuple(0, rabbits_arr_t{}));
                 }
             }
             namespace b
             {
                 template <> rabbits_t gen<rabbits::Junior>::generate()
                 {
-                    return std::make_tuple(2, std::array<rabbits::Rabbit,3>{rabbits::Mature, rabbits::Junior});
+                    return Rabbits(std::make_tuple(2, rabbits_arr_t{rabbits::Mature, rabbits::Junior}));
                 }
                 template <> rabbits_t gen<rabbits::Mature>::generate()
                 {
-                    return std::make_tuple(2, std::array<rabbits::Rabbit,3>{rabbits::Deceased, rabbits::Junior});
+                    return Rabbits(std::make_tuple(2, rabbits_arr_t{rabbits::Deceased, rabbits::Junior}));
                 }
                 template <> rabbits_t gen<rabbits::Deceased>::generate()
                 {
-                    return std::make_tuple(0, std::array<rabbits::Rabbit,3>{});
+                    return Rabbits(std::make_tuple(0, rabbits_arr_t{}));
                 }
             }
         } // namespace st3

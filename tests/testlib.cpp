@@ -6,43 +6,70 @@
 #include "rabbits.hpp"
 #include "generators.hpp"
 #include "processor.hpp"
-#include "ctx.h"
 
 using namespace std;
 using namespace fibra;
 
-TEST_CASE( "TWO State Machine", "[main]" )
+TEST_CASE( "TWO State Machine - Algo A", "[main]" )
 {
-    SECTION("Algo A - Junior")
+    SECTION("Junior")
     {
         gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST2, processors::ALGO::A, rabbits::Junior);
-        REQUIRE(get<0>(rabbits) == 1);
-        REQUIRE(get<1>(rabbits)[0] == rabbits::Mature);
+        REQUIRE(rabbits.size() == 1);
+        REQUIRE(rabbits[0] == rabbits::Mature);
     }
-    SECTION("Algo A - Mature")
+    SECTION("Mature")
     {
         gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST2, processors::ALGO::A, rabbits::Mature);
-        REQUIRE(get<0>(rabbits) == 2);
-        REQUIRE(get<1>(rabbits)[0] == rabbits::Mature);
-        REQUIRE(get<1>(rabbits)[1] == rabbits::Junior);
+        REQUIRE(rabbits.size() == 2);
+        REQUIRE(rabbits[0] == rabbits::Mature);
+        REQUIRE(rabbits[1] == rabbits::Junior);
     }
 }
 
-TEST_CASE( "Three State Machine", "[main]" )
+TEST_CASE( "Three State Machine - Algo A", "[main]" )
 {
-    SECTION("Algo A - Junior")
+    SECTION("Junior")
     {
         gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::A, rabbits::Junior);
-        REQUIRE(get<0>(rabbits) == 1);
-        REQUIRE(get<1>(rabbits)[0] == rabbits::Mature);
+        REQUIRE(rabbits.size() == 1);
+        REQUIRE(rabbits[0] == rabbits::Mature);
     }
-    SECTION("Algo A - Mature")
+    SECTION("Mature")
     {
         gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::A, rabbits::Mature);
-        REQUIRE(get<0>(rabbits) == 3);
-        REQUIRE(get<1>(rabbits)[0] == rabbits::Deceased);
-        REQUIRE(get<1>(rabbits)[1] == rabbits::Mature);
-        REQUIRE(get<1>(rabbits)[2] == rabbits::Junior);
+        REQUIRE(rabbits.size() == 3);
+        REQUIRE(rabbits[0] == rabbits::Deceased);
+        REQUIRE(rabbits[1] == rabbits::Mature);
+        REQUIRE(rabbits[2] == rabbits::Junior);
+    }
+    SECTION("Deceased")
+    {
+        gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::A, rabbits::Deceased);
+        REQUIRE(rabbits.size() == 0);
+    }
+}
+
+TEST_CASE( "Three State Machine - Algo B", "[main]" )
+{
+    SECTION("Junior")
+    {
+        gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::B, rabbits::Junior);
+        REQUIRE(rabbits.size() == 2);
+        REQUIRE(rabbits[0] == rabbits::Mature);
+        REQUIRE(rabbits[1] == rabbits::Junior);
+    }
+    SECTION("Mature")
+    {
+        gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::B, rabbits::Mature);
+        REQUIRE(rabbits.size() == 2);
+        REQUIRE(rabbits[0] == rabbits::Deceased);
+        REQUIRE(rabbits[1] == rabbits::Junior);
+    }
+    SECTION("Deceased")
+    {
+        gens::rabbits_t rabbits = processors::generate(rabbits::STATE::ST3, processors::ALGO::B, rabbits::Deceased);
+        REQUIRE(rabbits.size() == 0);
     }
 }
 

@@ -18,7 +18,6 @@
 #pragma once
 
 #include "rabbits.h"
-#include <tuple>
 
 /*! \namespace
  *! @brief      Fibonacci Rabbits
@@ -29,10 +28,27 @@ namespace fibra
     //! @brief      Generators
     namespace gens
     {
+        //! @brief  Helper type, array of rabbits
+        using rabbits_arr_t = std::array<rabbits::Rabbit, 3>;
+
         //! @brief      generated rabbits
         //! @todo       1. make tuple, after Rabbit becomes a class
         //!             2. make variadic template
-        using rabbits_t = std::tuple<size_t, std::array<rabbits::Rabbit, 3>>;
+        using rabbits_tpl_t = std::tuple<size_t, rabbits_arr_t>;
+
+        //! @brief      Helper class container for generated Rabbits
+        class Rabbits
+        {
+        public:
+            Rabbits(rabbits_tpl_t&& t) : m_tpl(t) {}
+            size_t size() const { return std::get<0>(m_tpl); }
+            rabbits::Rabbit operator [] (size_t idx) const { assert(idx<size()); return std::get<1>(m_tpl)[idx]; }
+        private:
+            const rabbits_tpl_t m_tpl;
+        };
+
+        //! @biref      typedefing
+        using rabbits_t = Rabbits;
 
         //! \namespace
         //! @brief          two state machine

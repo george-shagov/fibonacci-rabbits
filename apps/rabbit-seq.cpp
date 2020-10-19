@@ -66,14 +66,20 @@ int main(int argc, char **argv)
         /////////////////////////////////////////////////////////////////
         //! this is an Entry Point for Rabbit Generator
         //! two state machine
-        // processor<gens::st2::gen>(inFileStream, outFileStream);
-        //! three state machine algo A
         processors::processor(inFileStream
                             , outFileStream
-                            , rabbits::STATE::ST3
+                            , rabbits::STATE::ST2
                             , processors::ALGO::A);
+        //! three state machine algo A
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::A);
         //! three state machine algo B
-        // processor<gens::st3::gen_b>(inFileStream, outFileStream);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::B);
 
         cout << "Done." << endl;
     }

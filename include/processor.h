@@ -25,6 +25,7 @@ namespace fibra
 {
     namespace processors
     {
+        //! @brief      Algorithm ID, could be A or B
         enum class ALGO { A, B };
 
         template <rabbits::Rabbit R>
@@ -36,6 +37,10 @@ namespace fibra
         //!                 input File Stream with suurce Fibonacci Rabbit's sequence
         //! @param[in]      outFStream
         //!                 output File Stream to generate Fibonacci Rabbit's sequence
+        //! @param[in]      state
+        //!                 this is either two or three state machine
+        //! @param[in]      algo
+        //!                 either A or B
         void processor (ifstrm_ptr& inFStream
                             , ofstrm_ptr& outFStream
                             , const rabbits::STATE state
