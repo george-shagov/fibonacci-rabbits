@@ -16,6 +16,7 @@
 //!////////////////////////////////////////////////////
 
 #include "deps.h"
+#include "rabbits.h"
 #include "generators.h"
 #include "processor.hpp"
 

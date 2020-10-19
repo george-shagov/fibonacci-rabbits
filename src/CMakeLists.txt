@@ -6,6 +6,8 @@
 set(HEADER_LIST
     "${rseq_SOURCE_DIR}/include/ctx.h"
     "${rseq_SOURCE_DIR}/include/deps.h"
+    "${rseq_SOURCE_DIR}/include/rabbits.h"
+    "${rseq_SOURCE_DIR}/include/rabbits.hpp"
     "${rseq_SOURCE_DIR}/include/generators.h"
     "${rseq_SOURCE_DIR}/include/generators.hpp"
     "${rseq_SOURCE_DIR}/include/processor.h"

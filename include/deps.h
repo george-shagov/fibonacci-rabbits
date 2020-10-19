@@ -28,6 +28,7 @@
 #include <cstdio>
 #include <functional>
 #include <array>
+#include <tuple>
 
 #include <inttypes.h>
 #include <errno.h>

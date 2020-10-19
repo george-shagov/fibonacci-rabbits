@@ -16,7 +16,8 @@
 //!////////////////////////////////////////////////////
 
 #include "deps.h"
-#include "generators.h"
+#include "rabbits.hpp"
+#include "generators.hpp"
 #include "processor.hpp"
 #include "ctx.h"
 
@@ -65,11 +66,20 @@ int main(int argc, char **argv)
         /////////////////////////////////////////////////////////////////
         //! this is an Entry Point for Rabbit Generator
         //! two state machine
-        // processor<gens::st2::gen>(inFileStream, outFileStream);
+        processors::processor(inFileStream
+                            , outFileStream
+                            , rabbits::STATE::ST2
+                            , processors::ALGO::A);
         //! three state machine algo A
-        processor<gens::st3::gen_a>(inFileStream, outFileStream);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::A);
         //! three state machine algo B
-        // processor<gens::st3::gen_b>(inFileStream, outFileStream);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::B);
 
         cout << "Done." << endl;
     }
