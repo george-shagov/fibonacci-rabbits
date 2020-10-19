@@ -38,42 +38,55 @@ namespace fibra
         //! @brief          two state machine
         namespace st2
         {
-            //! \class
-            //! @brief          generator class for two state
-            //!                 Fibonacci Rabbit's machine
-            template <rabbits::Rabbit R>
-            struct gen
+            //! \namespace
+            //! @brief          algo A
+            namespace a
             {
-                //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  incoming pair of Rabbits
-                static rabbits_t generate();
-            };
+                //! \class
+                //! @brief          generator class for two state
+                //!                 Fibonacci Rabbit's machine
+                template <rabbits::Rabbit R>
+                struct gen
+                {
+                    //! @brief      A functor to generate new pairs or Rabbits
+                    //! @param[in]  incoming pair of Rabbits
+                    static rabbits_t generate();
+                };
+            }
         } // namespace st3
 
         //! \namespace
         //! @brief          three state machine
         namespace st3
         {
-            //! \class
-            //! @brief          Generator for three state machine
-            //!                 algorithm A
-            template <rabbits::Rabbit R>
-            struct gen_a
+            //! \namespace
+            //! @brief          algo A
+            namespace a
             {
-                //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  incoming pair of Rabbits
-                static rabbits_t generate();
-            };
-            //! \class
-            //! @brief          Generator for three state machine
-            //!                 algorithm B
-            template <rabbits::Rabbit R>
-            struct gen_b
+                //! \class
+                //! @brief          Generator for three state machine algorithm A
+                template <rabbits::Rabbit R>
+                struct gen
+                {
+                    //! @brief      A functor to generate new pairs or Rabbits
+                    //! @param[in]  incoming pair of Rabbits
+                    static rabbits_t generate();
+                };
+            }
+            //! \namespace
+            //! @brief          algo A
+            namespace b
             {
-                //! @brief      A functor to generate new pairs or Rabbits
-                //! @param[in]  incoming pair of Rabbits
-                static rabbits_t generate();
-            };
+                //! \class
+                //! @brief          Generator for three state machine algorithm B
+                template <rabbits::Rabbit R>
+                struct gen
+                {
+                    //! @brief      A functor to generate new pairs or Rabbits
+                    //! @param[in]  incoming pair of Rabbits
+                    static rabbits_t generate();
+                };
+            }
         } // namespace st3
     } // namespace gens
 } // namespace fibra

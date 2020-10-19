@@ -27,6 +27,27 @@ namespace fibra
 {
     namespace processors
     {
+        template <template <rabbits::Rabbit R> class G>
+        gens::rabbits_t gen2(rabbits::Rabbit rabbit)
+        {
+            switch(rabbit)
+            {
+                case rabbits::Junior: return G<rabbits::Junior>::generate();
+                case rabbits::Mature: return G<rabbits::Mature>::generate();
+                default: assert(0);
+            }
+        }
+        template <template <rabbits::Rabbit R> class G>
+        gens::rabbits_t gen3(rabbits::Rabbit rabbit)
+        {
+            switch(rabbit)
+            {
+                case rabbits::Junior:   return G<rabbits::Junior>::generate();
+                case rabbits::Mature:   return G<rabbits::Mature>::generate();
+                case rabbits::Deceased: return G<rabbits::Deceased>::generate();
+                default: assert(0);
+            }
+        }
         gens::rabbits_t generate(const rabbits::STATE state, const ALGO algo, const rabbits::Rabbit rabbit)
         {
             switch (state)
@@ -35,33 +56,16 @@ namespace fibra
                     switch (algo)
                     {
                         case ALGO::A:
-                            switch (rabbit)
-                            {
-                                case rabbits::Junior: return gens::st2::gen<rabbits::Junior>::generate(); 
-                                case rabbits::Mature: return gens::st2::gen<rabbits::Mature>::generate(); 
-                                default: assert(0);
-                            }
+                            return gen2<gens::st2::a::gen>(rabbit);
                         default: assert(0);
                     }
                 case rabbits::STATE::ST3:
                     switch (algo)
                     {
                         case ALGO::A:
-                            switch (rabbit)
-                            {
-                                case rabbits::Junior:   return gens::st3::gen_a<rabbits::Junior>::generate();
-                                case rabbits::Mature:   return gens::st3::gen_a<rabbits::Mature>::generate();
-                                case rabbits::Deceased: return gens::st3::gen_a<rabbits::Deceased>::generate();
-                                default: assert(0);
-                            }
+                            return gen3<gens::st3::a::gen>(rabbit);
                         case ALGO::B:
-                            switch (rabbit)
-                            {
-                                case rabbits::Junior:   return gens::st3::gen_b<rabbits::Junior>::generate();
-                                case rabbits::Mature:   return gens::st3::gen_b<rabbits::Mature>::generate();
-                                case rabbits::Deceased: return gens::st3::gen_a<rabbits::Deceased>::generate();
-                                default: assert(0);
-                            }
+                            return gen3<gens::st3::a::gen>(rabbit);
                         default: assert(0);
                     }
                 default:
