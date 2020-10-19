@@ -26,12 +26,12 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
 
   # Docs only available if this is the main app
-  #find_package(Doxygen)
-  #if(Doxygen_FOUND)
-  #  add_subdirectory(docs)
-  #else()
-  #  message(STATUS "Doxygen not found, not building docs")
-  #endif()
+  find_package(Doxygen)
+  if(Doxygen_FOUND)
+    add_subdirectory(docs)
+  else()
+    message(STATUS "Doxygen not found, not building docs")
+  endif()
 endif()
 
 # FetchContent added in CMake 3.11, downloads during the configure step

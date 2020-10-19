@@ -1,4 +1,5 @@
-# Documentation for A Test Porject                                      {#mainpage}
+# Documentation for Fibonacci Rabbits Project
 
-This is the documentation for A Test.
+This is the documentation for Fibonacci Rabbits Project.
+Author: George Shagov
 

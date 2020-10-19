@@ -33,6 +33,29 @@ cmake -S . -B build
 cmake --build build
 ```
 
+### Testing
+
+```sh
+cmake --build build --target test
+```
+
+or
+
+```sh
+./build/tests/testlib
+```
+
+### Documentation
+
+```sh
+cmake --build build --target docs
+```
+
+Note: both HTML and LATEX docs will be generated
+to build pdf:
+`cd build/docs/latex && make`
+`pdflatex` is require
+
 ## Usage
 
 ### Two state (Standard) Machine
@@ -72,7 +95,7 @@ $ ./rabbit-seq ./r-seq/r-seq.001
 
 And the output:
 ```sh
-$ ./build/apps/rabbit-seq ./r-seq/r-seq.001 
+$ ./build/apps/rabbit-seq ./r-seq/r-seq.001
 
 Growing ./r-seq/r-seq.001 to: ./r-seq/r-seq.002 ... Done.
 ```
@@ -208,11 +231,20 @@ Change:
         /////////////////////////////////////////////////////////////////
         //! this is an Entry Point for Rabbit Generator
         //! two state machine
-        processor<gens::st2::gen>(inFileStream, outFileStream);
-        //! three state maehine algo A
-        // processor<gens::st3::gen_a>(inFileStream, outFileStream);
-        //! three state maehine algo B
-        // processor<gens::st3::gen_b>(inFileStream, outFileStream);
+        processors::processor(inFileStream
+                            , outFileStream
+                            , rabbits::STATE::ST2
+                            , processors::ALGO::A);
+        //! three state machine algo A
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::A);
+        //! three state machine algo B
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::B);
 ```
 to
 ```cpp
@@ -220,18 +252,27 @@ to
         /////////////////////////////////////////////////////////////////
         //! this is an Entry Point for Rabbit Generator
         //! two state machine
-        // processor<gens::st2::gen>(inFileStream, outFileStream);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST2
+        //                     , processors::ALGO::A);
         //! three state machine algo A
-        processor<gens::st3::gen_a>(inFileStream, outFileStream);
+        processors::processor(inFileStream
+                            , outFileStream
+                            , rabbits::STATE::ST3
+                            , processors::ALGO::A);
         //! three state machine algo B
-        // processor<gens::st3::gen_b>(inFileStream, outFileStream);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST3
+        //                     , processors::ALGO::B);
 ```
 for algo A
 
 Recompiling:
 
 ```sh
-$ make clean && make
+$ cmake --build build
 ```
 
 Lets grow some rabbits first:
