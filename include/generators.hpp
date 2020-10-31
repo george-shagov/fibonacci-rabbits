@@ -71,6 +71,21 @@ namespace fibra
                     return Rabbits(std::make_tuple(0, rabbits_arr_t{}));
                 }
             }
+            namespace c
+            {
+                template <> rabbits_t gen<rabbits::Junior>::generate()
+                {
+                    return Rabbits(std::make_tuple(1, rabbits_arr_t{rabbits::Mature}));
+                }
+                template <> rabbits_t gen<rabbits::Mature>::generate()
+                {
+                    return Rabbits(std::make_tuple(3, rabbits_arr_t{rabbits::Deceased, rabbits::Junior, rabbits::Junior}));
+                }
+                template <> rabbits_t gen<rabbits::Deceased>::generate()
+                {
+                    return Rabbits(std::make_tuple(1, rabbits_arr_t{rabbits::Junior}));
+                }
+            }
         } // namespace st3
     } // namespace gens
 } // namespace fibra

@@ -61,15 +61,16 @@ int main(int argc, char **argv)
              << " to: "
              << ctx.getOutputFileName()
              << " ... "
+             << flush
              ;
 
         /////////////////////////////////////////////////////////////////
         //! this is an Entry Point for Rabbit Generator
         //! two state machine
-        processors::processor(inFileStream
-                            , outFileStream
-                            , rabbits::STATE::ST2
-                            , processors::ALGO::A);
+        // processors::processor(inFileStream
+        //                     , outFileStream
+        //                     , rabbits::STATE::ST2
+        //                     , processors::ALGO::A);
         //! three state machine algo A
         // processors::processor(inFileStream
         //                     , outFileStream
@@ -80,6 +81,11 @@ int main(int argc, char **argv)
         //                     , outFileStream
         //                     , rabbits::STATE::ST3
         //                     , processors::ALGO::B);
+        //! three state machine algo C
+        processors::processor(inFileStream
+                            , outFileStream
+                            , rabbits::STATE::ST3
+                            , processors::ALGO::C);
 
         cout << "Done." << endl;
     }
