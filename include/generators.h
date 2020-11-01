@@ -88,9 +88,9 @@ namespace fibra
                     //! @param[in]  incoming pair of Rabbits
                     static rabbits_t generate();
                 };
-            }
+            } // a
             //! \namespace
-            //! @brief          algo A
+            //! @brief          algo B
             namespace b
             {
                 //! \class
@@ -102,7 +102,21 @@ namespace fibra
                     //! @param[in]  incoming pair of Rabbits
                     static rabbits_t generate();
                 };
-            }
+            } // b
+            //! \namespace
+            //! @brief          algo C
+            namespace c
+            {
+                //! \class
+                //! @brief          Generator for three state machine algorithm C
+                template <rabbits::Rabbit R>
+                struct gen
+                {
+                    //! @brief      A functor to generate new pairs or Rabbits
+                    //! @param[in]  incoming pair of Rabbits
+                    static rabbits_t generate();
+                };
+            } // c
         } // namespace st3
     } // namespace gens
 } // namespace fibra

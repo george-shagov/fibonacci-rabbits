@@ -77,6 +77,8 @@ namespace fibra
                             return gen3<gens::st3::a::gen>(rabbit);
                         case ALGO::B:
                             return gen3<gens::st3::b::gen>(rabbit);
+                        case ALGO::C:
+                            return gen3<gens::st3::c::gen>(rabbit);
                         default: assert(0);
                     }
                 default:

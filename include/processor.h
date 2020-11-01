@@ -26,7 +26,7 @@ namespace fibra
     namespace processors
     {
         //! @brief      Algorithm ID, could be A or B
-        enum class ALGO { A, B };
+        enum class ALGO { A, B, C };
 
         template <rabbits::Rabbit R>
         constexpr gens::rabbits_t generate(const rabbits::STATE state, const ALGO algo);
